@@ -1,83 +1,116 @@
-#TODO: Define function to handle exceptions like user entering the wrong things
-#TODO: Define function that can handle random events
-#TODO: Define function that can manage different paths
-#TODO: Create an outline of the story
-    # Ghost Killer has captured the player after they got out of school late
-    # The player is locked in a room in an abandoned house when they come to
-    # The player is trapped in a bare room, fitted with scuff marks
-    # As the player comes to their senses, they hear a gravelly voice over what appears to be an intercom. He tells you that ...
 import random, sys
+
+
 def check_options(options, inp):
-    while inp not in options:
-        print("That is not a valid selection. Please try again")
-        inp = input()
+    val = True
+    if inp not in options:
+        val = False
+    else:
+        val = True
+    return val
+
+
+def is_str(inp): # This works
+    val = True
+    inp.strip()
+    if inp.isdigit():
+        val = False
+    else:
+        val = True
+    return val
 
 # def function that checks if user does the same option more than once
 print("""You wake up and realize that you have been captured by the infamous Ghost Killer, a serial killer that has 
 evaded capture for years. He has left you in a room in an abandoned house. You have a short amount of time to escape 
 before he returns to kill you. In the room, there are two doors, a radiator, and a window.
 What will you do?
-   a.) Check out the window.
-   b.) Check out the first door.
-   c.) Check out the second door.
+   a.) Check out the window
+   b.) Check out the first door
+   c.) Check out the second door
 """)
 counter = 0
-options = ["Check out the window.", "Check out the first door.", "Check out the second door."]
+options = ["Check out the window", "Check out the first door", "Check out the second door"]
 response = input()
-check_options(options,response)
+#check_options(options,response)
+
+while (check_options(options, response) == False) or (is_str(response) == False):
+    print("That is not a valid selection. Please try again.")
+    response = input()
+    is_str(response)
+    check_options(options, response)
+
 # first correct condition entered does print what its supposed to
 while counter < 3:
-    if response == "Check out the window.":
-        print("The window is sealed.")
+    if response == "Check out the window":
+        print("The window is sealed")
         #response = input()
-    elif response == "Check out the first door." or response == "Check out the second door.":
-        print("The door is sealed.")
+    elif response == "Check out the first door" or response == "Check out the second door":
+        print("The door is sealed")
         #response = input()
     counter +=1
     if counter ==3:
         break
     print("What will you do?")
     response = input()
+
+    while (check_options(options, response) == False) or (is_str(response) == False):
+        print("That is not a valid selection. Please try again.")
+        response = input()
+        is_str(response)
+        check_options(options, response)
+
 print(""" 
 You notice something shine in the corner of the room. Upon closer inspection, you find out that it's a toolbox. What
 will you do?
-    a.) Use the screwdriver to try and dismantle the first door.
-    b.) Use the screwdriver to try and dismantle the second door.
-    c.) Use the screwdriver and hammer to try and unseal the window.
+    a.) Use the screwdriver to try and dismantle the first door
+    b.) Use the screwdriver to try and dismantle the second door
+    c.) Use the screwdriver and hammer to try and unseal the window
     """)
         #response = input()
 response = input()
+while is_str(response) == False:
+    print("That is not a valid selection. Please try again.")
+    response = input()
+    is_str(response)
 while True:
-    if response == "Use the screwdriver to try and dismantle the first door.":
-        print("The screwdriver head does not match the screws found on this door.")
+    if response == "Use the screwdriver to try and dismantle the first door":
+        print("The screwdriver head does not match the screws found on this door")
         print("What will you do?")
-        response = input()
-    elif response == "Use the screwdriver to try and dismantle the second door.":
+
+    elif response == "Use the screwdriver to try and dismantle the second door":
         print("""The screwdriver head is a match, but, in your weakened state, it is taking awhile to undo the door’s hinges.
               When you finally get to the last screw, the Ghost Killer reappears and stabs you in the heart. Soon after, 
               you bleed to death.""")
         print("GAME OVER") # Player has lost the game
         sys.exit() # Exits the program
-    elif response == "Use the screwdriver and hammer to try and unseal the window.":
+
+    elif response == "Use the screwdriver and hammer to try and unseal the window":
         break
+    response = input()
+    while is_str(response) == False:
+        print("That is not a valid selection. Please try again.")
+        response = input()
+        is_str(response)
+
 print("""You successfully manage to squeeze the screwdriver between the window’s gap and begin to use the hammer to 
 try and pry open the window. However, a few hits in, the screwdriver breaks off. You quickly grab a piece of the 
 screwdriver and use it to keep the window open. However, you don’t have much time because the window is extremely
 heavy. What will you do now?
-    a.) Try to push the window up.
-    b.) Run and get an item from the toolbox to keep the window open.
-    c.) Try to smash the window with the hammer. """)
+    a.) Try to push the window up
+    b.) Run and get an item from the toolbox to keep the window open
+    c.) Try to smash the window with the hammer """)
+
 response = input()
 # Implement loop for options relating to freeing the window
 while True:
-    if response == "Try to push the window up.":
+    if response == "Try to push the window up":
         print("You try to lift up the window, but you don’t have the strength to. What will you do?")
         #response = input()
     # Only works correctly for first case, other two options brick program.
-    if response == "Try to smash the window with the hammer.":
+    if response == "Try to smash the window with the hammer":
         print("The window does not budge to your attacks. What will you do?")
         #response = input()
-    if response == "Run and get an item from the toolbox to keep the window open.":
+    if response == "Run and get an item from the toolbox to keep the window open":
         break
     response = input()
 
